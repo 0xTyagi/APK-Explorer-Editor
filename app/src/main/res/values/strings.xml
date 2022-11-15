@@ -72,6 +72,8 @@
     <string name="invite_friends_Summary">Invite your friends to try AEE</string>
     <string name="jadx_to_java">Use JADX to decompile to Java</string>
     <string name="jadx_to_smali">Use JADX to decompile to Smali</string>
+    <string name="jadx_to_java_enable">Experimental</string>
+    <string name="jadx_to_smali_enable">Experimental</string>
     <string name="language">Language</string>
     <string name="last_modified">Last Modified: %s</string>
     <string name="loading">Loading…</string>
