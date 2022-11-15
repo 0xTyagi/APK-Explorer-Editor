@@ -42,6 +42,10 @@ android {
     }
 }
 
+ext {
+    jadxVersion = "1.4.5"
+}
+
 dependencies {
     implementation 'com.github.sunilpaulmathew:CrashReporter:93ff4f0'
     implementation 'com.github.sunilpaulmathew:sCommon:947d85b85e'
@@ -50,4 +54,13 @@ dependencies {
     implementation 'net.lingala.zip4j:zip4j:2.9.0'
     implementation 'org.smali:baksmali:2.5.2'
     implementation 'org.smali:smali:2.5.2'
+
+
+    implementation "io.github.skylot:jadx-core:$jadxVersion"
+    implementation "io.github.skylot:jadx-dex-input:$jadxVersion"
+    implementation "io.github.skylot:jadx-java-input:$jadxVersion"
+    implementation "io.github.skylot:jadx-smali-input:$jadxVersion"
+    implementation "io.github.skylot:jadx-raung-input:$jadxVersion"
+
+    testImplementation 'ch.qos.logback:logback-classic:1.4.4'
 }
