@@ -46,8 +46,8 @@ public class AppSettings {
                     if (APKEditorUtils.isFullVersion(context)) {
                         mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_edit, context), context.getString(R.string.text_editing), getEditingOptions(context), null));
                         mData.add(new sSerializableItems(null, context.getString(R.string.settings_jadx), null, null));
-                        mData.add(new sSerializableItems(null, context.getString(R.string.jadx_to_java), getJadxJavaOptions(context), null));
-                        mData.add(new sSerializableItems(null, context.getString(R.string.jadx_to_smali), getJadxSmaliOptions(context), null));
+                        mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_jadx, context), context.getString(R.string.jadx_to_java), getJadxJavaOptions(context), null));
+                        mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_jadx, context), context.getString(R.string.jadx_to_smali), getJadxSmaliOptions(context), null));
                         mData.add(new sSerializableItems(null, context.getString(R.string.signing_title), null, null));
                         mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_android, context), context.getString(R.string.export_options), getAPKs(context), null));
                         mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_installer, context), context.getString(R.string.installer_action), getInstallerAction(context), null));
@@ -617,7 +617,7 @@ public class AppSettings {
             public void onItemSelected(int itemPosition) {
                 if (itemPosition == 0) {
                     sUtils.saveBoolean("jadxJava", false, context);
-                    getData(context).set(position, new sSerializableItems(sUtils.getDrawable(R.drawable.ic_edit, context), context.getString(R.string.jadx_to_java), getJadxJavaOptions(context), null));
+                    getData(context).set(position, new sSerializableItems(sUtils.getDrawable(R.drawable.ic_jadx, context), context.getString(R.string.jadx_to_java), getJadxJavaOptions(context), null));
                     adapter.notifyItemChanged(position);
                 } else {
                     new MaterialAlertDialogBuilder(context)
@@ -628,7 +628,7 @@ public class AppSettings {
                             })
                             .setPositiveButton(context.getString(R.string.enable), (d, id) -> {
                                 sUtils.saveBoolean("jadxJava", true, context);
-                                getData(context).set(position, new sSerializableItems(sUtils.getDrawable(R.drawable.ic_edit, context), context.getString(R.string.jadx_to_java), getJadxJavaOptions(context), null));
+                                getData(context).set(position, new sSerializableItems(sUtils.getDrawable(R.drawable.ic_jadx, context), context.getString(R.string.jadx_to_java), getJadxJavaOptions(context), null));
                                 adapter.notifyItemChanged(position);
                             }).show();
                 }
@@ -644,7 +644,7 @@ public class AppSettings {
             public void onItemSelected(int itemPosition) {
                 if (itemPosition == 0) {
                     sUtils.saveBoolean("jadxSmali", false, context);
-                    getData(context).set(position, new sSerializableItems(sUtils.getDrawable(R.drawable.ic_edit, context), context.getString(R.string.jadx_to_smali), getJadxSmaliOptions(context), null));
+                    getData(context).set(position, new sSerializableItems(sUtils.getDrawable(R.drawable.ic_jadx, context), context.getString(R.string.jadx_to_smali), getJadxSmaliOptions(context), null));
                     adapter.notifyItemChanged(position);
                 } else {
                     new MaterialAlertDialogBuilder(context)
@@ -655,7 +655,7 @@ public class AppSettings {
                             })
                             .setPositiveButton(context.getString(R.string.enable), (d, id) -> {
                                 sUtils.saveBoolean("jadxSmali", true, context);
-                                getData(context).set(position, new sSerializableItems(sUtils.getDrawable(R.drawable.ic_edit, context), context.getString(R.string.jadx_to_smali), getJadxSmaliOptions(context), null));
+                                getData(context).set(position, new sSerializableItems(sUtils.getDrawable(R.drawable.ic_jadx, context), context.getString(R.string.jadx_to_smali), getJadxSmaliOptions(context), null));
                                 adapter.notifyItemChanged(position);
                             }).show();
                 }
