@@ -29,24 +29,32 @@ import in.sunilpaulmathew.sCommon.Utils.sUtils;
  */
 public class AppSettings {
 
+    private static volatile ArrayList<sSerializableItems> mData;
+
     public static ArrayList<sSerializableItems> getData(Context context) {
-        ArrayList <sSerializableItems> mData = new ArrayList<>();
-        mData.add(new sSerializableItems(null, context.getString(R.string.user_interface), null, null));
-        mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_theme, context), context.getString(R.string.app_theme), sThemeUtils.getAppTheme(context), null));
-        mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_translate, context), context.getString(R.string.language), getLanguage(context), null));
-        mData.add(new sSerializableItems(null, context.getString(R.string.settings_general), null, null));
-        mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_projects, context), context.getString(R.string.project_exist_action), getProjectExistAction(context), null));
-        mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_export, context), context.getString(R.string.export_path_apks), getExportAPKsPath(context), null));
-        mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_export, context), context.getString(R.string.export_path_resources), getExportPath(context), null));
-        if (APKEditorUtils.isFullVersion(context)) {
-            mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_edit, context), context.getString(R.string.text_editing), getEditingOptions(context), null));
-            mData.add(new sSerializableItems(null, context.getString(R.string.signing_title), null, null));
-            mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_android, context), context.getString(R.string.export_options), getAPKs(context), null));
-            mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_installer, context), context.getString(R.string.installer_action), getInstallerAction(context), null));
-            mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_key, context), context.getString(R.string.sign_apk_with), getAPKSign(context), null));
+        if (mData == null) {
+            synchronized (AppSettings.class) {
+                if (mData == null) {
+                    mData = new ArrayList<>();
+                    mData.add(new sSerializableItems(null, context.getString(R.string.user_interface), null, null));
+                    mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_theme, context), context.getString(R.string.app_theme), sThemeUtils.getAppTheme(context), null));
+                    mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_translate, context), context.getString(R.string.language), getLanguage(context), null));
+                    mData.add(new sSerializableItems(null, context.getString(R.string.settings_general), null, null));
+                    mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_projects, context), context.getString(R.string.project_exist_action), getProjectExistAction(context), null));
+                    mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_export, context), context.getString(R.string.export_path_apks), getExportAPKsPath(context), null));
+                    mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_export, context), context.getString(R.string.export_path_resources), getExportPath(context), null));
+                    if (APKEditorUtils.isFullVersion(context)) {
+                        mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_edit, context), context.getString(R.string.text_editing), getEditingOptions(context), null));
+                        mData.add(new sSerializableItems(null, context.getString(R.string.signing_title), null, null));
+                        mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_android, context), context.getString(R.string.export_options), getAPKs(context), null));
+                        mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_installer, context), context.getString(R.string.installer_action), getInstallerAction(context), null));
+                        mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_key, context), context.getString(R.string.sign_apk_with), getAPKSign(context), null));
+                    }
+                    mData.add(new sSerializableItems(null, context.getString(R.string.settings_misc), null, null));
+                    mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_delete, context), context.getString(R.string.clear_cache), context.getString(R.string.clear_cache_summary), null));
+                }
+            }
         }
-        mData.add(new sSerializableItems(null, context.getString(R.string.settings_misc), null, null));
-        mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_delete, context), context.getString(R.string.clear_cache), context.getString(R.string.clear_cache_summary), null));
         return mData;
     }
 
