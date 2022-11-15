@@ -40,6 +40,9 @@ public class AppSettings {
         mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_export, context), context.getString(R.string.export_path_resources), getExportPath(context), null));
         if (APKEditorUtils.isFullVersion(context)) {
             mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_edit, context), context.getString(R.string.text_editing), getEditingOptions(context), null));
+            mData.add(new sSerializableItems(null, context.getString(R.string.settings_jadx), null, null));
+            mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_edit, context), context.getString(R.string.jadx_to_java), getJadxJavaOptions(context), null));
+            mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_edit, context), context.getString(R.string.jadx_to_smali), getJadxSmaliOptions(context), null));
             mData.add(new sSerializableItems(null, context.getString(R.string.signing_title), null, null));
             mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_android, context), context.getString(R.string.export_options), getAPKs(context), null));
             mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_installer, context), context.getString(R.string.installer_action), getInstallerAction(context), null));
@@ -232,6 +235,22 @@ public class AppSettings {
         }
     }
 
+    private static String getJadxJavaOptions(Context context) {
+        if (sUtils.getBoolean("jadxJava", false, context)) {
+            return context.getString(R.string.enable);
+        } else {
+            return context.getString(R.string.disable);
+        }
+    }
+
+    private static String getJadxSmaliOptions(Context context) {
+        if (sUtils.getBoolean("jadxSmali", false, context)) {
+            return context.getString(R.string.enable);
+        } else {
+            return context.getString(R.string.disable);
+        }
+    }
+
     private static String getInstallerAction(Context context) {
         if (sUtils.getString("installerAction", null, context) != null) {
             return sUtils.getString("installerAction", null, context);
@@ -347,11 +366,11 @@ public class AppSettings {
                 }
             } else if (APKEditorUtils.isFullVersion(activity) && position == 7) {
                 setEditingOptions(adapter, position,activity);
-            } else if (APKEditorUtils.isFullVersion(activity) && position == 9) {
+            } else if (APKEditorUtils.isFullVersion(activity) && position == 12) {
                 setAPKs(adapter, position,activity);
-            } else if (APKEditorUtils.isFullVersion(activity) && position == 10) {
+            } else if (APKEditorUtils.isFullVersion(activity) && position == 13) {
                 setInstallerAction(adapter, position,activity);
-            } else if (APKEditorUtils.isFullVersion(activity) && position == 11) {
+            } else if (APKEditorUtils.isFullVersion(activity) && position == 14) {
                 setAPKSign(adapter, position,activity);
             } else {
                 deleteAppSettings(activity);
