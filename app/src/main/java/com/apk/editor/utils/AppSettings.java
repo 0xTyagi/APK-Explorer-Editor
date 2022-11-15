@@ -41,8 +41,8 @@ public class AppSettings {
         if (APKEditorUtils.isFullVersion(context)) {
             mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_edit, context), context.getString(R.string.text_editing), getEditingOptions(context), null));
             mData.add(new sSerializableItems(null, context.getString(R.string.settings_jadx), null, null));
-            mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_edit, context), context.getString(R.string.jadx_to_java), getJadxJavaOptions(context), null));
-            mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_edit, context), context.getString(R.string.jadx_to_smali), getJadxSmaliOptions(context), null));
+            mData.add(new sSerializableItems(null, context.getString(R.string.jadx_to_java), getJadxJavaOptions(context), null));
+            mData.add(new sSerializableItems(null, context.getString(R.string.jadx_to_smali), getJadxSmaliOptions(context), null));
             mData.add(new sSerializableItems(null, context.getString(R.string.signing_title), null, null));
             mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_android, context), context.getString(R.string.export_options), getAPKs(context), null));
             mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_installer, context), context.getString(R.string.installer_action), getInstallerAction(context), null));
@@ -602,7 +602,7 @@ public class AppSettings {
     }
 
     private static void setJadxJavaOptions(SettingsAdapter adapter, int position, Context context) {
-        new sSingleChoiceDialog(R.drawable.ic_edit, context.getString(R.string.jadx_to_java),
+        new sSingleChoiceDialog(R.drawable.ic_jadx, context.getString(R.string.jadx_to_java),
                 getJadxJavaOptionsMenu(context), getJadxJavaOptionsPosition(context), context) {
 
             @Override
@@ -629,7 +629,7 @@ public class AppSettings {
     }
 
     private static void setJadxSmaliOptions(SettingsAdapter adapter, int position, Context context) {
-        new sSingleChoiceDialog(R.drawable.ic_edit, context.getString(R.string.jadx_to_smali),
+        new sSingleChoiceDialog(R.drawable.ic_jadx, context.getString(R.string.jadx_to_smali),
                 getJadxSmaliOptionsMenu(context), getJadxSmaliOptionsPosition(context), context) {
 
             @Override
