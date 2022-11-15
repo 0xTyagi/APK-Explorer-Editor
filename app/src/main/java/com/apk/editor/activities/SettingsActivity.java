@@ -28,7 +28,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        SettingsAdapter mRecycleViewAdapter = new SettingsAdapter(AppSettings.getData(this));
+        SettingsAdapter mRecycleViewAdapter = new SettingsAdapter(AppSettings.getNewData(this));
         mRecyclerView.setAdapter(mRecycleViewAdapter);
 
         mRecycleViewAdapter.setOnItemClickListener((position, v) ->
