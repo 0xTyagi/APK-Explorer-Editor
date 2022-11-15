@@ -10,7 +10,7 @@
 
 ### APK Explorer & Editor, an open-source tool to explore the contents of an installed APK, is strictly made with an aim to inspect an installed APK file.
 
-### This is an experimantal fork. The goal is to add support for decompiling apps into Java source code using [jadx](https://github.com/skylot/jadx) as a library.
+### This is an experimental fork. The goal is to add support for decompiling apps into Java source code using [jadx](https://github.com/skylot/jadx) as a library.
 
 ## Features
 AEE currently supports the following tasks
