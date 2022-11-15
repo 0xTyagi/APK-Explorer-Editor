@@ -10,6 +10,8 @@
 
 ### APK Explorer & Editor, an open-source tool to explore the contents of an installed APK, is strictly made with an aim to inspect an installed APK file.
 
+### This is an experimantal fork. The goal is to add support for decompiling apps into Java source code using [jadx](https://github.com/skylot/jadx) as a library.
+
 ## Features
 AEE currently supports the following tasks
 * Explore an installed application and navigate through its contents.
@@ -22,18 +24,6 @@ AEE currently supports the following tasks
 * Create signed APK's/App Bundles after the above-mentioned processes.
 * Resign APK's/bundles with AEE custom key.
 
-## Download
-[<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
-     alt="" height="80">](https://play.google.com/store/apps/details?id=com.apk.explorer)
-[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
-               alt=""
-               height="80">](https://f-droid.org/packages/com.apk.editor/)
-[<img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png"
-          alt=""
-          height="80">](https://apt.izzysoft.de/fdroid/index/apk/com.apk.editor)
-[<img src="https://i.ibb.co/q0mdc4Z/get-it-on-github.png"
-                    alt="" height="80">](https://github.com/apk-editor/APK-Explorer-Editor/releases)
-
 ## Support
 [<img src="https://github.com/SmartPack/SmartPack.github.io/blob/master/assets/pic006.png?raw=true"
      alt=""
@@ -41,9 +31,6 @@ AEE currently supports the following tasks
 
 ## Credits
 A list of people who contributed to this project is available [here](Credits.md).
-
-## Translations
-Please help me to translate this application via [POEditor](https://poeditor.com/join/project?hash=QztabxONOp). You may also translate after downloading the original language string available [here](app/src/main/res/values/strings.xml).
 
 ## License
 
