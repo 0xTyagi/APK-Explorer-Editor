@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Environment;
+import android.util.Log;
 
 import com.apk.editor.MainActivity;
 import com.apk.editor.R;
@@ -180,6 +181,7 @@ public class AppSettings {
     }
 
     private static String getLanguage(Context context) {
+        Log.e ("qqq", sUtils.getLanguage(context));
         switch (sUtils.getLanguage(context)) {
             case "en_US":
                 return context.getString(R.string.language_en);

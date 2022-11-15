@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
     public void onBindViewHolder(@NonNull SettingsAdapter.ViewHolder holder, int position) {
         holder.Title.setText(data.get(position).getTextOne());
         if (data.get(position).getTextTwo() != null) {
+            holder.mIcon.setVisibility(View.VISIBLE);
             holder.Description.setText(data.get(position).getTextTwo());
         } else {
             holder.Description.setVisibility(View.GONE);
@@ -57,6 +59,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
             holder.mIcon.setColorFilter(sUtils.isDarkTheme(holder.Title.getContext()) ? Color.WHITE : Color.BLACK);
         }
         if (data.get(position).getIcon() != null) {
+            holder.mIcon.setVisibility(View.VISIBLE);
             holder.mIcon.setImageDrawable(data.get(position).getIcon());
         } else {
             holder.mIcon.setVisibility(View.GONE);
