@@ -24,11 +24,6 @@ AEE currently supports the following tasks
 * Create signed APK's/App Bundles after the above-mentioned processes.
 * Resign APK's/bundles with AEE custom key.
 
-## Support
-[<img src="https://github.com/SmartPack/SmartPack.github.io/blob/master/assets/pic006.png?raw=true"
-     alt=""
-     height="80">](https://t.me/apkexplorer)
-
 ## Credits
 A list of people who contributed to this project is available [here](Credits.md).
 
