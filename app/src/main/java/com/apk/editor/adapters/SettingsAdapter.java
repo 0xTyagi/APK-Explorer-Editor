@@ -47,6 +47,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
         holder.Title.setText(data.get(position).getTextOne());
         if (data.get(position).getTextTwo() != null) {
             holder.Description.setText(data.get(position).getTextTwo());
+            holder.Description.setVisibility(View.VISIBLE);
         } else {
             holder.Description.setVisibility(View.GONE);
         }
@@ -56,12 +57,16 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
         holder.mIcon.setColorFilter(sUtils.isDarkTheme(holder.Title.getContext()) ? Color.WHITE : Color.BLACK);
         if (data.get(position).getIcon() != null) {
             holder.mIcon.setImageDrawable(data.get(position).getIcon());
+            holder.mIcon.setVisibility(View.VISIBLE);
         } else {
             holder.mIcon.setVisibility(View.GONE);
         }
         if (Build.VERSION.SDK_INT >= 29 && (position == 5 || position == 6)) {
             holder.Title.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             holder.Description.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+        } else {
+            holder.Title.setPaintFlags(Paint.HINTING_OFF);
+            holder.Description.setPaintFlags(Paint.HINTING_OFF);
         }
     }
 
