@@ -266,7 +266,7 @@ public class APKExplorer {
                             sUtils.delete(files);
                             File mDexExtractPath = new File(mExplorePath, files.getName());
                             mDexExtractPath.mkdirs();
-                            Common.setStatus(context.getString(R.string.decompiling, files.getName()));
+                            Common.setStatus(context.getString(R.string.decompiling) + files.getName());
                             new DexToSmali(false, new File(sPackageUtils.getSourceDir(Common.getAppID(), context)), mDexExtractPath, 0, files.getName()).execute();
                         }
                     }
