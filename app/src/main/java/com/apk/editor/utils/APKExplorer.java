@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat;
 import com.apk.editor.R;
 import com.apk.editor.activities.APKExploreActivity;
 import com.apk.editor.activities.APKTasksActivity;
+import com.apk.editor.utils.jadx.JadxProvider;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -257,17 +258,22 @@ public class APKExplorer {
             public void doInBackground() {
                 if (!mExplorePath.exists()) {
                     mExplorePath.mkdirs();
-                    APKEditorUtils.unzip(sPackageUtils.getSourceDir(packageName, context), mExplorePath.getAbsolutePath());
-                    // Decompile dex file(s)
-                    for (File files : Objects.requireNonNull(mExplorePath.listFiles())) {
-                        if (files.getName().startsWith("classes") && files.getName().endsWith(".dex") && !Common.isCancelled()) {
-                            mBackUpPath.mkdirs();
-                            sUtils.copy(files, new File(mBackUpPath, files.getName()));
-                            sUtils.delete(files);
-                            File mDexExtractPath = new File(mExplorePath, files.getName());
-                            mDexExtractPath.mkdirs();
-                            Common.setStatus(context.getString(R.string.decompiling, files.getName());
-                            new DexToSmali(false, new File(sPackageUtils.getSourceDir(Common.getAppID(), context)), mDexExtractPath, 0, files.getName()).execute();
+                    if (sUtils.getBoolean("jadxJava", false, context)) {
+                        Common.setStatus(context.getString(R.string.decompiling, mExplorePath.getName()));
+                        new JadxProvider(true, new File(sPackageUtils.getSourceDir(Common.getAppID(), context)), mExplorePath, null).execute();
+                    } else {
+                        APKEditorUtils.unzip(sPackageUtils.getSourceDir(packageName, context), mExplorePath.getAbsolutePath());
+                        // Decompile dex file(s)
+                        for (File files : Objects.requireNonNull(mExplorePath.listFiles())) {
+                            if (files.getName().startsWith("classes") && files.getName().endsWith(".dex") && !Common.isCancelled()) {
+                                mBackUpPath.mkdirs();
+                                sUtils.copy(files, new File(mBackUpPath, files.getName()));
+                                sUtils.delete(files);
+                                File mDexExtractPath = new File(mExplorePath, files.getName());
+                                mDexExtractPath.mkdirs();
+                                Common.setStatus(context.getString(R.string.decompiling, files.getName()));
+                                new DexToSmali(false, new File(sPackageUtils.getSourceDir(Common.getAppID(), context)), mDexExtractPath, 0, files.getName()).execute();
+                            }
                         }
                     }
                 }

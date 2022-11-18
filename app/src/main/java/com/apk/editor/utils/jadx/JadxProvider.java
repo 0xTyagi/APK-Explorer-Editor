@@ -19,7 +19,7 @@ public class JadxProvider {
     private final File mInputFile, mOutDir;
     private final JadxProviderArgs mJadxProviderArgs;
 
-    JadxProvider(boolean debugInfo, File inputFile, File outDir, @Nullable JadxProviderArgs jadxProviderArgs) {
+    public JadxProvider(boolean debugInfo, File inputFile, File outDir, @Nullable JadxProviderArgs jadxProviderArgs) {
         this.mDebugInfo = debugInfo;
         this.mInputFile = inputFile;
         this.mOutDir = outDir;
@@ -32,7 +32,7 @@ public class JadxProvider {
         //jadxArgs.setOutDir(mOutDir);
         jadxArgs.setRootDir(mOutDir);
         //jadxArgs.setFsCaseSensitive(false);
-        jadxArgs.setCodeCache(new NoOpCodeCache());
+        //jadxArgs.setCodeCache(new NoOpCodeCache());
         if (mJadxProviderArgs != null) {
             jadxArgs.setSkipResources(mJadxProviderArgs.no_res);
             jadxArgs.setSkipSources(mJadxProviderArgs.no_src);
