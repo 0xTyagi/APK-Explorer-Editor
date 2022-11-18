@@ -10,6 +10,7 @@ import java.io.File;
 
 import jadx.api.JadxArgs;
 import jadx.api.JadxDecompiler;
+import jadx.api.impl.NoOpCodeCache;
 
 public class JadxProvider {
 
@@ -31,6 +32,7 @@ public class JadxProvider {
         //jadxArgs.setOutDir(mOutDir);
         jadxArgs.setRootDir(mOutDir);
         //jadxArgs.setFsCaseSensitive(false);
+        jadxArgs.setCodeCache(new NoOpCodeCache());
         if (mJadxProviderArgs != null) {
             jadxArgs.setSkipResources(mJadxProviderArgs.no_res);
             jadxArgs.setSkipSources(mJadxProviderArgs.no_src);
