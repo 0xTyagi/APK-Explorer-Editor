@@ -123,6 +123,7 @@ public class APKSignActivity extends AppCompatActivity {
             while ((read = inputStream.read(bytes)) != -1) {
                 outputStream.write(bytes, 0, read);
             }
+            inputStream.close();
         } catch (IOException ignored) {}
         setStatus();
     }
