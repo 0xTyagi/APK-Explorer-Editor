@@ -55,6 +55,10 @@ android {
     }
 }
 
+ext {
+    jadxVersion = "1.4.5"
+}
+
 dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs_nio:2.0.0'
 
