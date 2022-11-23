@@ -303,6 +303,7 @@ public class APKsFragment extends Fragment {
                         if (Objects.equals(mExtension, "apk")) {
                             Common.getAPKList().add(mFile.getAbsolutePath());
                         }
+                        inputStream.close();
                     } catch (IOException ignored) {
                     }
                 }

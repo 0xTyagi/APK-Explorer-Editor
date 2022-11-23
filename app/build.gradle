@@ -1,19 +1,20 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+}
 
 android {
 
-    compileSdkVersion 31
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 33
+    buildToolsVersion "33.0.1"
 
     defaultConfig {
-        minSdkVersion 23
-        targetSdkVersion 31
+        minSdkVersion 21
+        targetSdkVersion 33
         versionCode 24
         versionName "v0.24"
         vectorDrawables.useSupportLibrary = true
         testFunctionalTest = false
         testHandleProfiling = false
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -21,7 +22,13 @@ android {
         release {
             minifyEnabled true
             shrinkResources true
+            multiDexEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            multiDexEnabled true
         }
     }
 
@@ -40,6 +47,12 @@ android {
     lintOptions {
         abortOnError false
     }
+    compileOptions {
+        // Flag to enable support for the new language APIs
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
 }
 
 ext {
@@ -47,6 +60,8 @@ ext {
 }
 
 dependencies {
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs_nio:2.0.0'
+
     implementation 'com.github.sunilpaulmathew:CrashReporter:93ff4f0'
     implementation 'com.github.sunilpaulmathew:sCommon:947d85b85e'
     implementation 'com.google.android.material:material:1.6.1'
@@ -55,12 +70,11 @@ dependencies {
     implementation 'org.smali:baksmali:2.5.2'
     implementation 'org.smali:smali:2.5.2'
 
-
-    implementation "io.github.skylot:jadx-core:$jadxVersion"
-    implementation "io.github.skylot:jadx-dex-input:$jadxVersion"
-    implementation "io.github.skylot:jadx-java-input:$jadxVersion"
-    implementation "io.github.skylot:jadx-smali-input:$jadxVersion"
-    implementation "io.github.skylot:jadx-raung-input:$jadxVersion"
+    implementation project(":jadx-core")
+    implementation project(":jadx-plugins:jadx-dex-input")
+    implementation project(":jadx-plugins:jadx-java-input")
+    implementation project(":jadx-plugins:jadx-smali-input")
+    implementation project(":jadx-plugins:jadx-raung-input")
 
     testImplementation 'ch.qos.logback:logback-classic:1.4.4'
 }

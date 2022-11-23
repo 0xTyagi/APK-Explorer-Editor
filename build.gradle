@@ -1,23 +1,15 @@
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.3'
-    }
+plugins {
+    id "com.android.application" version '7.4.0-beta05' apply false
+    id "com.android.library" version '7.4.0-beta05' apply false
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven {
-            url "https://jitpack.io"
-        }
-    }
-}
+ext.jadxVersion = "dev-android"
+version = jadxVersion
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+//java.util.zip.ZipEntry .setLastModifiedTime(entry.getLastModifiedTime()); todo done
+//java.lang.BootstrapMethodError todo done
+//java.lang.Process waitFor() todo done

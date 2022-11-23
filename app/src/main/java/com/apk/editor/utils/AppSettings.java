@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Environment;
+import android.util.Log;
 
 import com.apk.editor.MainActivity;
 import com.apk.editor.R;
@@ -35,7 +36,7 @@ public class AppSettings {
         if (mData == null) {
             synchronized (AppSettings.class) {
                 if (mData == null) {
-                    getNewData(context);
+                   getNewData(context);
                 }
             }
         }
@@ -53,6 +54,9 @@ public class AppSettings {
         mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_export, context), context.getString(R.string.export_path_resources), getExportPath(context), null));
         if (APKEditorUtils.isFullVersion(context)) {
             mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_edit, context), context.getString(R.string.text_editing), getEditingOptions(context), null));
+            mData.add(new sSerializableItems(null, context.getString(R.string.settings_jadx), null, null));
+            mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_jadx, context), context.getString(R.string.jadx_to_java), getJadxJavaOptions(context), null));
+            mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_jadx, context), context.getString(R.string.jadx_to_smali), getJadxSmaliOptions(context), null));
             mData.add(new sSerializableItems(null, context.getString(R.string.signing_title), null, null));
             mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_android, context), context.getString(R.string.export_options), getAPKs(context), null));
             mData.add(new sSerializableItems(sUtils.getDrawable(R.drawable.ic_installer, context), context.getString(R.string.installer_action), getInstallerAction(context), null));
@@ -82,6 +86,22 @@ public class AppSettings {
 
     private static int getEditingOptionsPosition(Context context) {
         if (sUtils.getBoolean("editText", false, context)) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    private static int getJadxJavaOptionsPosition(Context context) {
+        if (sUtils.getBoolean("jadxJava", false, context)) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    private static int getJadxSmaliOptionsPosition(Context context) {
+        if (sUtils.getBoolean("jadxSmali", false, context)) {
             return 1;
         } else {
             return 0;
@@ -166,6 +186,7 @@ public class AppSettings {
     }
 
     private static String getLanguage(Context context) {
+        Log.e ("qqq", sUtils.getLanguage(context));
         switch (sUtils.getLanguage(context)) {
             case "en_US":
                 return context.getString(R.string.language_en);
@@ -245,6 +266,22 @@ public class AppSettings {
         }
     }
 
+    private static String getJadxJavaOptions(Context context) {
+        if (sUtils.getBoolean("jadxJava", false, context)) {
+            return context.getString(R.string.enable);
+        } else {
+            return context.getString(R.string.disable);
+        }
+    }
+
+    private static String getJadxSmaliOptions(Context context) {
+        if (sUtils.getBoolean("jadxSmali", false, context)) {
+            return context.getString(R.string.enable);
+        } else {
+            return context.getString(R.string.disable);
+        }
+    }
+
     private static String getInstallerAction(Context context) {
         if (sUtils.getString("installerAction", null, context) != null) {
             return sUtils.getString("installerAction", null, context);
@@ -281,6 +318,20 @@ public class AppSettings {
     }
 
     private static String[] getEditingOptionsMenu(Context context) {
+        return new String[] {
+                context.getString(R.string.disable),
+                context.getString(R.string.enable)
+        };
+    }
+
+    private static String[] getJadxJavaOptionsMenu(Context context) {
+        return new String[] {
+                context.getString(R.string.disable),
+                context.getString(R.string.enable)
+        };
+    }
+
+    private static String[] getJadxSmaliOptionsMenu(Context context) {
         return new String[] {
                 context.getString(R.string.disable),
                 context.getString(R.string.enable)
@@ -361,10 +412,14 @@ public class AppSettings {
             } else if (APKEditorUtils.isFullVersion(activity) && position == 7) {
                 setEditingOptions(adapter, position,activity);
             } else if (APKEditorUtils.isFullVersion(activity) && position == 9) {
-                setAPKs(adapter, position,activity);
+                setJadxJavaOptions(adapter, position,activity);
             } else if (APKEditorUtils.isFullVersion(activity) && position == 10) {
+                setJadxSmaliOptions(adapter, position,activity);
+            } else if (APKEditorUtils.isFullVersion(activity) && position == 12) {
+                setAPKs(adapter, position,activity);
+            } else if (APKEditorUtils.isFullVersion(activity) && position == 13) {
                 setInstallerAction(adapter, position,activity);
-            } else if (APKEditorUtils.isFullVersion(activity) && position == 11) {
+            } else if (APKEditorUtils.isFullVersion(activity) && position == 14) {
                 setAPKSign(adapter, position,activity);
             } else {
                 deleteAppSettings(activity);
@@ -554,6 +609,60 @@ public class AppSettings {
                             .setPositiveButton(context.getString(R.string.enable), (d, id) -> {
                                 sUtils.saveBoolean("editText", true, context);
                                 getData(context).set(position, new sSerializableItems(sUtils.getDrawable(R.drawable.ic_edit, context), context.getString(R.string.text_editing), getEditingOptions(context), null));
+                                adapter.notifyItemChanged(position);
+                            }).show();
+                }
+            }
+        }.show();
+    }
+
+    private static void setJadxJavaOptions(SettingsAdapter adapter, int position, Context context) {
+        new sSingleChoiceDialog(R.drawable.ic_jadx, context.getString(R.string.jadx_to_java),
+                getJadxJavaOptionsMenu(context), getJadxJavaOptionsPosition(context), context) {
+
+            @Override
+            public void onItemSelected(int itemPosition) {
+                if (itemPosition == 0) {
+                    sUtils.saveBoolean("jadxJava", false, context);
+                    getData(context).set(position, new sSerializableItems(sUtils.getDrawable(R.drawable.ic_jadx, context), context.getString(R.string.jadx_to_java), getJadxJavaOptions(context), null));
+                    adapter.notifyItemChanged(position);
+                } else {
+                    new MaterialAlertDialogBuilder(context)
+                            .setIcon(R.mipmap.ic_launcher)
+                            .setTitle(R.string.warning)
+                            .setMessage(context.getString(R.string.jadx_to_java_enable))
+                            .setNegativeButton(context.getString(R.string.cancel), (d, id) -> {
+                            })
+                            .setPositiveButton(context.getString(R.string.enable), (d, id) -> {
+                                sUtils.saveBoolean("jadxJava", true, context);
+                                getData(context).set(position, new sSerializableItems(sUtils.getDrawable(R.drawable.ic_jadx, context), context.getString(R.string.jadx_to_java), getJadxJavaOptions(context), null));
+                                adapter.notifyItemChanged(position);
+                            }).show();
+                }
+            }
+        }.show();
+    }
+
+    private static void setJadxSmaliOptions(SettingsAdapter adapter, int position, Context context) {
+        new sSingleChoiceDialog(R.drawable.ic_jadx, context.getString(R.string.jadx_to_smali),
+                getJadxSmaliOptionsMenu(context), getJadxSmaliOptionsPosition(context), context) {
+
+            @Override
+            public void onItemSelected(int itemPosition) {
+                if (itemPosition == 0) {
+                    sUtils.saveBoolean("jadxSmali", false, context);
+                    getData(context).set(position, new sSerializableItems(sUtils.getDrawable(R.drawable.ic_jadx, context), context.getString(R.string.jadx_to_smali), getJadxSmaliOptions(context), null));
+                    adapter.notifyItemChanged(position);
+                } else {
+                    new MaterialAlertDialogBuilder(context)
+                            .setIcon(R.mipmap.ic_launcher)
+                            .setTitle(R.string.warning)
+                            .setMessage(context.getString(R.string.jadx_to_smali_enable))
+                            .setNegativeButton(context.getString(R.string.cancel), (d, id) -> {
+                            })
+                            .setPositiveButton(context.getString(R.string.enable), (d, id) -> {
+                                sUtils.saveBoolean("jadxSmali", true, context);
+                                getData(context).set(position, new sSerializableItems(sUtils.getDrawable(R.drawable.ic_jadx, context), context.getString(R.string.jadx_to_smali), getJadxSmaliOptions(context), null));
                                 adapter.notifyItemChanged(position);
                             }).show();
                 }

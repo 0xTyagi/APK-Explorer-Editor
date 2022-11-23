@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
     @Override
     public SettingsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View rowItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_about, parent, false);
+        Log.e("qqq", viewType+ " ");
         return new ViewHolder(rowItem);
     }
 
@@ -54,7 +56,11 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
         if (sUtils.isDarkTheme(holder.Title.getContext())) {
             holder.Title.setTextColor(APKEditorUtils.getThemeAccentColor(holder.Title.getContext()));
         }
-        holder.mIcon.setColorFilter(sUtils.isDarkTheme(holder.Title.getContext()) ? Color.WHITE : Color.BLACK);
+        if (position != 9 && position != 10) {
+            holder.mIcon.setColorFilter(sUtils.isDarkTheme(holder.Title.getContext()) ? Color.WHITE : Color.BLACK);
+        } else {
+            holder.mIcon.clearColorFilter();
+        }
         if (data.get(position).getIcon() != null) {
             holder.mIcon.setImageDrawable(data.get(position).getIcon());
             holder.mIcon.setVisibility(View.VISIBLE);
