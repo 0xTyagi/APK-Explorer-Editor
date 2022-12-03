@@ -13,6 +13,4 @@
 /captures
 .externalNativeBuild
 .cxx
-
-/jadx-core
-/jadx-plugins 
+ 

@@ -71,18 +71,18 @@ dependencies {
     implementation 'org.smali:baksmali:2.5.2'
     implementation 'org.smali:smali:2.5.2'
     
-    implementation 'io.github.skylot:jadx-core:1.4.5'
-    implementation 'io.github.skylot:jadx-core:jadx-dex-input:1.4.5'
-    implementation 'io.github.skylot:jadx-core:jadx-java-input:1.4.5'
-    implementation 'io.github.skylot:jadx-core:jadx-java-convert:1.4.5'
-    implementation 'io.github.skylot:jadx-core:jadx-smali-input:1.4.5'
-    implementation 'io.github.skylot:jadx-core:jadx-raung-input:1.4.5'
+   // implementation 'io.github.skylot:jadx-core:1.4.5'
+   // implementation 'io.github.skylot:jadx-core:jadx-dex-input:1.4.5'
+  //  implementation 'io.github.skylot:jadx-core:jadx-java-input:1.4.5'
+   // implementation 'io.github.skylot:jadx-core:jadx-java-convert:1.4.5'
+   // implementation 'io.github.skylot:jadx-core:jadx-smali-input:1.4.5'
+  //  implementation 'io.github.skylot:jadx-core:jadx-raung-input:1.4.5'
 
-    //implementation project(":jadx-core")
-  //  implementation project(":jadx-plugins:jadx-dex-input")
-   // implementation project(":jadx-plugins:jadx-java-input")
- //   implementation project(":jadx-plugins:jadx-smali-input")
- //   implementation project(":jadx-plugins:jadx-raung-input")
+   implementation project(":jadx-core")
+    implementation project(":jadx-plugins:jadx-dex-input")
+    implementation project(":jadx-plugins:jadx-java-input")
+  implementation project(":jadx-plugins:jadx-smali-input")
+  implementation project(":jadx-plugins:jadx-raung-input")
 
     testImplementation 'ch.qos.logback:logback-classic:1.4.4'
 }
