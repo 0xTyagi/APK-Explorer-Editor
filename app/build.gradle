@@ -73,12 +73,12 @@ dependencies {
     
      // implementation group: 'com.example.android', name: 'app-magic', version: '12.3'
    
-      implementation group:'io.github.skylot', name:'jadx-core', version:'1.4.5'
-   implementation group:'io.github.skylot', name:'jadx-core:jadx-dex-input', version:'1.4.5'
-   implementation group:'io.github.skylot', name:'jadx-core:jadx-java-input', version:'1.4.5'
-    implementation group:'io.github.skylot', name:'jadx-core:jadx-java-convert', version:'1.4.5'
-    implementation group:'io.github.skylot', name:'jadx-core:jadx-smali-input', version:'1.4.5'
-    implementation group:'io.github.skylot', name:'jadx-core:jadx-raung-input', version:'1.4.5'
+      implementation 'io.github.skylot:jadx-core'
+   implementation 'io.github.skylot:jadx-core:jadx-dex-input'
+   implementation 'io.github.skylot:jadx-core:jadx-java-input'
+    implementation 'io.github.skylot:jadx-core:jadx-java-convert'
+    implementation 'io.github.skylot:jadx-core:jadx-smali-input'
+    implementation 'io.github.skylot:jadx-core:jadx-raung-input'
 
    //implementation project(":jadx-core")
     //implementation project(":jadx-plugins:jadx-dex-input")
