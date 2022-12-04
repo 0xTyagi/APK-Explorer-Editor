@@ -73,7 +73,7 @@ dependencies {
     
      // implementation group: 'com.example.android', name: 'app-magic', version: '12.3'
    
-      implementation 'io.github.skylot:jadx-core'
+      implementation 'io.github.skylot:jadx-core:1.4.5'
    implementation 'io.github.skylot:jadx-core:jadx-dex-input'
    implementation 'io.github.skylot:jadx-core:jadx-java-input'
     implementation 'io.github.skylot:jadx-core:jadx-java-convert'
